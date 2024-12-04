@@ -19,7 +19,7 @@ func main() {
 		panic(err)
 	}
 
-	regex := regexp.MustCompile(`(do|don't|mul)\(((\d+),(\d+))?\)`)
+	regex := regexp.MustCompile(`(do|don't|mul)\((?:(\d+),(\d+))?\)`)
 	resultOne := 0
 	resultTwo := 0
 	mulEnable := true
@@ -34,11 +34,11 @@ func main() {
 				mulEnable = false
 				break
 			case "mul":
-				arg1, err := strconv.Atoi(match[3])
+				arg1, err := strconv.Atoi(match[2])
 				if err != nil {
 					continue
 				}
-				arg2, err := strconv.Atoi(match[4])
+				arg2, err := strconv.Atoi(match[3])
 				if err != nil {
 					continue
 				}
